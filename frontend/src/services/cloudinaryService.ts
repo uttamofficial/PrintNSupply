@@ -1,5 +1,7 @@
 import cloudinaryConfig from '../config/cloudinary';
 
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5010';
+
 class CloudinaryService {
   // Upload a file directly to Cloudinary from the frontend
   static async uploadFile(
@@ -141,7 +143,7 @@ class CloudinaryService {
   // Delete a file from Cloudinary (this still needs to go through our backend for security)
   static async deleteFile(publicId: string): Promise<any> {
     try {
-      const response = await fetch(`/api/upload/${publicId}`, {
+      const response = await fetch(`${API_URL}/api/upload/${publicId}`, {
         method: 'DELETE'
       });
       
@@ -168,7 +170,7 @@ class CloudinaryService {
     }
     
     // Return URL to our backend proxy endpoint
-    const proxiedUrl = `http://localhost:5010/api/cloudinary/view/${encodeURIComponent(fullPublicId)}`;
+    const proxiedUrl = `${API_URL}/api/cloudinary/view/${encodeURIComponent(fullPublicId)}`;
     console.log('🔗 Generated proxied URL:', proxiedUrl);
     return proxiedUrl;
   }
@@ -183,7 +185,7 @@ class CloudinaryService {
     }
     
     // Return URL to our backend download endpoint
-    const downloadUrl = `http://localhost:5010/api/cloudinary/download/${encodeURIComponent(fullPublicId)}`;
+    const downloadUrl = `${API_URL}/api/cloudinary/download/${encodeURIComponent(fullPublicId)}`;
     console.log('📥 Generated download URL:', downloadUrl);
     return downloadUrl;
   }
@@ -206,7 +208,7 @@ class CloudinaryService {
       
       console.log('🔍 Requesting signed URL for:', fullPublicId);
       
-      const response = await fetch(`http://localhost:5010/api/cloudinary/signed-url/${encodeURIComponent(fullPublicId)}`);
+      const response = await fetch(`${API_URL}/api/cloudinary/signed-url/${encodeURIComponent(fullPublicId)}`);
       
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);

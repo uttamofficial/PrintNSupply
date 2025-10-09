@@ -112,5 +112,17 @@ npm start
    - Set the correct API URL in frontend environment variables
 
 ## 🌐 Live URLs (After Deployment)
-- Frontend: [Your frontend URL]
-- Backend API: [Your backend URL]
+- Frontend: https://printnsupply.onrender.com
+- Backend API: https://printnsupply-backend.onrender.com
+
+## 🔗 URL Configuration
+
+### Frontend Environment Variables
+```
+VITE_API_URL=https://printnsupply-backend.onrender.com
+```
+
+### Backend Environment Variables
+```
+FRONTEND_URL=https://printnsupply.onrender.com
+```
