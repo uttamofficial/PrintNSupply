@@ -8,7 +8,7 @@ dotenv.config();
 
 // Initialize express app
 const app = express();
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 5010;
 
 // Configure CORS with specific origins
 const corsOptions = {
@@ -40,6 +40,38 @@ const authRoutes = require('./routes/auth');
 const uploadRoutes = require('./routes/upload');
 const orderRoutes = require('./routes/orders');
 const cloudinaryRoutes = require('./routes/cloudinary');
+
+// Health check endpoint
+app.get('/', (req, res) => {
+  res.json({ 
+    message: 'PrintNSupply Backend API is running!', 
+    status: 'healthy',
+    timestamp: new Date().toISOString(),
+    version: '1.0.0'
+  });
+});
+
+app.get('/health', (req, res) => {
+  res.json({ 
+    status: 'healthy', 
+    uptime: process.uptime(),
+    timestamp: new Date().toISOString()
+  });
+});
+
+// Test endpoint
+app.get('/test', (req, res) => {
+  res.json({ 
+    message: 'Backend test successful!',
+    endpoints: [
+      '/api/products',
+      '/api/auth', 
+      '/api/orders',
+      '/stationery',
+      '/api/stationery'
+    ]
+  });
+});
 
 // Use routes
 app.use('/api/products', productRoutes);
