@@ -17,17 +17,17 @@ services:
       - key: VITE_API_URL
         value: https://printnsupply-backend.onrender.com
       - key: VITE_SUPABASE_URL
-        sync: false
+        value: https://qlchpejqhdjzbfikvlzw.supabase.co
       - key: VITE_SUPABASE_KEY
-        sync: false
+        value: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InFsY2hwZWpxaGRqemJmaWt2bHp3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTk5MDA1MTgsImV4cCI6MjA3NTQ3NjUxOH0.e6M4R5P0o6xanOOmiyBL_2REzasx2nVQoI1DtAVGAGA
       - key: VITE_CLOUDINARY_CLOUD_NAME
-        sync: false
+        value: dcwzukqqw
       - key: VITE_CLOUDINARY_UPLOAD_PRESET
-        sync: false
+        value: printnsupply
       - key: VITE_STRIPE_PUBLISHABLE_KEY
-        sync: false
+        value: pk_test_51SG0CkCeoTVIAxUvuRKLMB0AmTRL422LqKbW2famGDWXo74ueXLgeuzGO6Qc3b50We9Oh7kqRok2XN62oc3WId7u00y7mgxB1u
       - key: VITE_CLERK_PUBLISHABLE_KEY
-        sync: false
+        value: pk_test_bGVnYWwtYW50LTk2LmNsZXJrLmFjY291bnRzLmRldiQ
 
   # Backend Service
   - type: web

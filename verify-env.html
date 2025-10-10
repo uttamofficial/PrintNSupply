@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Environment Variables Verification</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+        
+        h1 {
+            color: #667eea;
+            margin-bottom: 10px;
+            font-size: 2.5em;
+        }
+        
+        .subtitle {
+            color: #666;
+            margin-bottom: 30px;
+            font-size: 1.1em;
+        }
+        
+        .env-section {
+            margin-bottom: 30px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            border-left: 4px solid #667eea;
+        }
+        
+        .env-section h2 {
+            color: #333;
+            margin-bottom: 15px;
+            font-size: 1.5em;
+        }
+        
+        .env-item {
+            display: flex;
+            align-items: center;
+            padding: 12px;
+            margin: 8px 0;
+            background: white;
+            border-radius: 8px;
+            border: 1px solid #e0e0e0;
+        }
+        
+        .env-key {
+            font-weight: 600;
+            color: #667eea;
+            min-width: 250px;
+            font-family: 'Courier New', monospace;
+        }
+        
+        .env-value {
+            flex: 1;
+            color: #333;
+            word-break: break-all;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+        }
+        
+        .status {
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            font-weight: 600;
+            margin-left: 10px;
+        }
+        
+        .status.success {
+            background: #d4edda;
+            color: #155724;
+        }
+        
+        .status.error {
+            background: #f8d7da;
+            color: #721c24;
+        }
+        
+        .status.warning {
+            background: #fff3cd;
+            color: #856404;
+        }
+        
+        .test-section {
+            margin-top: 30px;
+            padding: 20px;
+            background: #e8f4f8;
+            border-radius: 10px;
+            border-left: 4px solid #17a2b8;
+        }
+        
+        .test-button {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 8px;
+            font-size: 1em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s;
+            margin: 10px 10px 10px 0;
+        }
+        
+        .test-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+        
+        .test-button:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            transform: none;
+        }
+        
+        .test-result {
+            margin-top: 15px;
+            padding: 15px;
+            background: white;
+            border-radius: 8px;
+            border: 1px solid #dee2e6;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+            white-space: pre-wrap;
+            word-break: break-all;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+        
+        .summary {
+            margin-top: 30px;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 10px;
+            text-align: center;
+        }
+        
+        .summary h2 {
+            margin-bottom: 10px;
+        }
+        
+        .summary-stats {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 20px;
+        }
+        
+        .stat {
+            text-align: center;
+        }
+        
+        .stat-number {
+            font-size: 3em;
+            font-weight: bold;
+        }
+        
+        .stat-label {
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+        
+        .loading {
+            display: inline-block;
+            margin-left: 10px;
+        }
+        
+        .loading::after {
+            content: '⏳';
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔍 Environment Variables Verification</h1>
+        <p class="subtitle">Check if all environment variables are properly configured for production deployment</p>
+        
+        <div class="env-section" id="frontend-env">
+            <h2>Frontend Environment Variables (VITE_*)</h2>
+            <div id="frontend-vars"></div>
+        </div>
+        
+        <div class="test-section">
+            <h2>🧪 API Connection Tests</h2>
+            <button class="test-button" onclick="testBackendHealth()">Test Backend Health</button>
+            <button class="test-button" onclick="testProducts()">Test Products API</button>
+            <button class="test-button" onclick="testOrderCreation()">Test Order Creation</button>
+            <button class="test-button" onclick="testAll()">Run All Tests</button>
+            <div id="test-results"></div>
+        </div>
+        
+        <div class="summary" id="summary">
+            <h2>Configuration Summary</h2>
+            <div class="summary-stats">
+                <div class="stat">
+                    <div class="stat-number" id="total-vars">0</div>
+                    <div class="stat-label">Total Variables</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number" id="configured-vars">0</div>
+                    <div class="stat-label">Configured</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number" id="missing-vars">0</div>
+                    <div class="stat-label">Missing</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // Expected environment variables
+        const expectedVars = [
+            'VITE_API_URL',
+            'VITE_SUPABASE_URL',
+            'VITE_SUPABASE_KEY',
+            'VITE_CLOUDINARY_CLOUD_NAME',
+            'VITE_CLOUDINARY_UPLOAD_PRESET',
+            'VITE_STRIPE_PUBLISHABLE_KEY',
+            'VITE_CLERK_PUBLISHABLE_KEY'
+        ];
+        
+        // Check and display environment variables
+        function checkEnvironmentVariables() {
+            const container = document.getElementById('frontend-vars');
+            let configured = 0;
+            let missing = 0;
+            
+            expectedVars.forEach(varName => {
+                const value = import.meta.env[varName];
+                const item = document.createElement('div');
+                item.className = 'env-item';
+                
+                const key = document.createElement('div');
+                key.className = 'env-key';
+                key.textContent = varName;
+                
+                const valueDiv = document.createElement('div');
+                valueDiv.className = 'env-value';
+                
+                const status = document.createElement('span');
+                status.className = 'status';
+                
+                if (value) {
+                    configured++;
+                    // Mask sensitive values
+                    if (varName.includes('KEY') || varName.includes('SECRET')) {
+                        valueDiv.textContent = value.substring(0, 20) + '...' + value.substring(value.length - 4);
+                    } else {
+                        valueDiv.textContent = value;
+                    }
+                    status.textContent = '✓ SET';
+                    status.classList.add('success');
+                } else {
+                    missing++;
+                    valueDiv.textContent = 'NOT SET';
+                    valueDiv.style.color = '#999';
+                    status.textContent = '✗ MISSING';
+                    status.classList.add('error');
+                }
+                
+                item.appendChild(key);
+                item.appendChild(valueDiv);
+                item.appendChild(status);
+                container.appendChild(item);
+            });
+            
+            // Update summary
+            document.getElementById('total-vars').textContent = expectedVars.length;
+            document.getElementById('configured-vars').textContent = configured;
+            document.getElementById('missing-vars').textContent = missing;
+        }
+        
+        // Test backend health
+        async function testBackendHealth() {
+            const resultsDiv = document.getElementById('test-results');
+            resultsDiv.innerHTML = '<div class="loading">Testing backend health...</div>';
+            
+            const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:5010';
+            
+            try {
+                const response = await fetch(`${apiUrl}/health`);
+                const data = await response.json();
+                
+                resultsDiv.innerHTML = `
+                    <div class="test-result" style="border-left: 4px solid #28a745;">
+                        <strong>✓ Backend Health Check: SUCCESS</strong><br><br>
+                        <strong>URL:</strong> ${apiUrl}/health<br>
+                        <strong>Status:</strong> ${response.status} ${response.statusText}<br>
+                        <strong>Response:</strong><br>
+                        ${JSON.stringify(data, null, 2)}
+                    </div>
+                `;
+            } catch (error) {
+                resultsDiv.innerHTML = `
+                    <div class="test-result" style="border-left: 4px solid #dc3545;">
+                        <strong>✗ Backend Health Check: FAILED</strong><br><br>
+                        <strong>URL:</strong> ${apiUrl}/health<br>
+                        <strong>Error:</strong> ${error.message}<br><br>
+                        <strong>Possible Issues:</strong><br>
+                        - Backend is not deployed or not running<br>
+                        - VITE_API_URL is incorrect<br>
+                        - CORS is not configured properly<br>
+                        - Backend environment variables are missing
+                    </div>
+                `;
+            }
+        }
+        
+        // Test products API
+        async function testProducts() {
+            const resultsDiv = document.getElementById('test-results');
+            resultsDiv.innerHTML = '<div class="loading">Testing products API...</div>';
+            
+            const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:5010';
+            
+            try {
+                const response = await fetch(`${apiUrl}/api/products`);
+                const data = await response.json();
+                
+                resultsDiv.innerHTML = `
+                    <div class="test-result" style="border-left: 4px solid #28a745;">
+                        <strong>✓ Products API: SUCCESS</strong><br><br>
+                        <strong>URL:</strong> ${apiUrl}/api/products<br>
+                        <strong>Status:</strong> ${response.status} ${response.statusText}<br>
+                        <strong>Products Found:</strong> ${data.length || 0}<br><br>
+                        <strong>Sample Product:</strong><br>
+                        ${JSON.stringify(data[0] || {}, null, 2)}
+                    </div>
+                `;
+            } catch (error) {
+                resultsDiv.innerHTML = `
+                    <div class="test-result" style="border-left: 4px solid #dc3545;">
+                        <strong>✗ Products API: FAILED</strong><br><br>
+                        <strong>URL:</strong> ${apiUrl}/api/products<br>
+                        <strong>Error:</strong> ${error.message}<br><br>
+                        <strong>Possible Issues:</strong><br>
+                        - Backend database connection failed<br>
+                        - SUPABASE_URL or SUPABASE_KEY not set in backend<br>
+                        - Products table doesn't exist
+                    </div>
+                `;
+            }
+        }
+        
+        // Test order creation
+        async function testOrderCreation() {
+            const resultsDiv = document.getElementById('test-results');
+            resultsDiv.innerHTML = '<div class="loading">Testing order creation...</div>';
+            
+            const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:5010';
+            
+            const testOrder = {
+                items: [
+                    {
+                        id: 'test-product',
+                        name: 'Test Product',
+                        quantity: 1,
+                        price: 10.00
+                    }
+                ],
+                customerInfo: {
+                    name: 'Test Customer',
+                    email: 'test@example.com',
+                    phone: '1234567890'
+                },
+                totalAmount: 10.00,
+                paymentMethod: 'test'
+            };
+            
+            try {
+                const response = await fetch(`${apiUrl}/api/orders/create`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(testOrder)
+                });
+                
+                const data = await response.json();
+                
+                if (response.ok) {
+                    resultsDiv.innerHTML = `
+                        <div class="test-result" style="border-left: 4px solid #28a745;">
+                            <strong>✓ Order Creation: SUCCESS</strong><br><br>
+                            <strong>URL:</strong> ${apiUrl}/api/orders/create<br>
+                            <strong>Status:</strong> ${response.status} ${response.statusText}<br>
+                            <strong>Order ID:</strong> ${data.order?.id || 'N/A'}<br><br>
+                            <strong>Response:</strong><br>
+                            ${JSON.stringify(data, null, 2)}
+                        </div>
+                    `;
+                } else {
+                    resultsDiv.innerHTML = `
+                        <div class="test-result" style="border-left: 4px solid #ffc107;">
+                            <strong>⚠ Order Creation: PARTIAL SUCCESS</strong><br><br>
+                            <strong>URL:</strong> ${apiUrl}/api/orders/create<br>
+                            <strong>Status:</strong> ${response.status} ${response.statusText}<br>
+                            <strong>Message:</strong> ${data.message || 'Unknown error'}<br><br>
+                            <strong>Response:</strong><br>
+                            ${JSON.stringify(data, null, 2)}
+                        </div>
+                    `;
+                }
+            } catch (error) {
+                resultsDiv.innerHTML = `
+                    <div class="test-result" style="border-left: 4px solid #dc3545;">
+                        <strong>✗ Order Creation: FAILED</strong><br><br>
+                        <strong>URL:</strong> ${apiUrl}/api/orders/create<br>
+                        <strong>Error:</strong> ${error.message}<br><br>
+                        <strong>This is the error you're experiencing!</strong><br><br>
+                        <strong>Possible Issues:</strong><br>
+                        - Backend is trying to connect to localhost instead of production URL<br>
+                        - VITE_API_URL environment variable not set during build<br>
+                        - Backend environment variables missing<br>
+                        - Orders table doesn't exist in database
+                    </div>
+                `;
+            }
+        }
+        
+        // Run all tests
+        async function testAll() {
+            await testBackendHealth();
+            await new Promise(resolve => setTimeout(resolve, 1000));
+            await testProducts();
+            await new Promise(resolve => setTimeout(resolve, 1000));
+            await testOrderCreation();
+        }
+        
+        // Initialize
+        checkEnvironmentVariables();
+    </script>
+</body>
+</html>
