@@ -15,8 +15,10 @@ const corsOptions = {
   origin: [
     'http://localhost:5173', // Local development
     'http://localhost:3000', // Alternative local port
+    'http://localhost:8080', // Local production build testing
     'https://printnsupply.onrender.com', // Production frontend URL (Primary)
     'https://printnsupply-frontend.onrender.com', // Alternative frontend URL pattern
+    'https://uttamofficial.github.io', // GitHub Pages deployment
     process.env.FRONTEND_URL || 'https://printnsupply.onrender.com' // Environment variable for frontend URL
   ].filter(Boolean), // Remove any undefined values
   credentials: true,
