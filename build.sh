@@ -15,6 +15,18 @@ npm install
 echo "🔨 Building frontend..."
 npm run build
 
+# Copy _redirects file for Render deployment
+if [ -f "public/_redirects" ]; then
+    echo "📋 Copying _redirects file..."
+    cp public/_redirects dist/
+fi
+
+# Copy render.json if it exists
+if [ -f "render.json" ]; then
+    echo "📋 Copying render.json..."
+    cp render.json dist/
+fi
+
 # Check if build was successful
 if [ -d "dist" ]; then
     echo "✅ Build successful! dist directory created."

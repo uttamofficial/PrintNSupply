@@ -5,6 +5,10 @@ services:
     env: static
     buildCommand: ./build.sh
     staticPublishPath: ./frontend/dist
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html
     envVars:
       - key: VITE_API_URL
         value: https://printnsupply-backend.onrender.com

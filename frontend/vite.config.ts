@@ -7,10 +7,15 @@ export default defineConfig({
   optimizeDeps: {
     exclude: ['lucide-react'],
   },
+  build: {
+    outDir: 'dist',
+    assetsDir: 'assets',
+  },
+  publicDir: 'public',
   server: {
     proxy: {
       '/api': {
-        target: 'http://localhost:5009',
+        target: 'http://localhost:5010',
         changeOrigin: true,
         secure: false,
       }
