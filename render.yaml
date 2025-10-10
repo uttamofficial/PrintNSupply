@@ -3,8 +3,12 @@ services:
   - type: web
     name: printnsupply-frontend
     env: static
-    buildCommand: ./build.sh
+    buildCommand: npm install && npm run build:frontend && cp frontend/public/_redirects frontend/dist/ 2>/dev/null || true
     staticPublishPath: ./frontend/dist
+    headers:
+      - path: /*
+        name: Cache-Control
+        value: public, max-age=0, must-revalidate
     routes:
       - type: rewrite
         source: /*
