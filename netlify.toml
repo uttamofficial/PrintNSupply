@@ -1,6 +1,7 @@
 [build]
-  command = "npm run build"
-  publish = "frontend/dist"
+  base = "frontend"
+  command = "npm install && npm run build"
+  publish = "dist"
 
 [[redirects]]
   from = "/*"
@@ -9,3 +10,12 @@
 
 [build.environment]
   NODE_VERSION = "18"
+  
+# Note: Set environment variables via Netlify Dashboard or CLI:
+# VITE_API_URL = "https://printnsupply-backend.onrender.com"
+# VITE_SUPABASE_URL = "https://qlchpejqhdjzbfikvlzw.supabase.co"
+# VITE_SUPABASE_KEY = "your-key"
+# VITE_CLOUDINARY_CLOUD_NAME = "dcwzukqqw"
+# VITE_CLOUDINARY_UPLOAD_PRESET = "printnsupply"
+# VITE_STRIPE_PUBLISHABLE_KEY = "pk_test_..."
+# VITE_CLERK_PUBLISHABLE_KEY = "pk_test_..."
