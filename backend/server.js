@@ -15,9 +15,9 @@ const corsOptions = {
   origin: [
     'http://localhost:5173', // Local development
     'http://localhost:3000', // Alternative local port
-    'https://printnsupply.onrender.com', // Production frontend URL
+    'https://printnsupply.onrender.com', // Production frontend URL (Primary)
     'https://printnsupply-frontend.onrender.com', // Alternative frontend URL pattern
-    process.env.FRONTEND_URL // Environment variable for frontend URL
+    process.env.FRONTEND_URL || 'https://printnsupply.onrender.com' // Environment variable for frontend URL
   ].filter(Boolean), // Remove any undefined values
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
@@ -152,4 +152,6 @@ app.listen(PORT, () => {
   console.log(`🌐 Frontend URL: https://printnsupply.onrender.com`);
   console.log(`🔧 Backend URL: https://printnsupply-backend.onrender.com`);
   console.log(`📡 CORS enabled for frontend communication`);
+  console.log(`🔗 CORS Origins:`, corsOptions.origin);
+  console.log(`📍 Environment FRONTEND_URL:`, process.env.FRONTEND_URL || 'Not set');
 });

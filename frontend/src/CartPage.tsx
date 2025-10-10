@@ -189,7 +189,7 @@ const CartPage = () => {
 
       {/* STEP 1: CART VIEW */}
       {currentStep === 'cart' && (
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 pt-8">
           <div className="flex items-center justify-between mb-6">
             <h1 className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600">
               Shopping Cart
