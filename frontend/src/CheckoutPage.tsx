@@ -359,7 +359,7 @@ function CheckoutPage() {
 
           {/* Order Summary */}
           <div className="lg:col-span-1">
-            <div className="bg-white rounded-xl shadow-xl p-4 sm:p-6 lg:sticky lg:top-4 border-2 border-blue-100">
+            <div className="bg-white rounded-xl shadow-xl p-4 sm:p-6 pt-8 sm:pt-10 lg:sticky lg:top-4 border-2 border-blue-100">
               <h2 className="text-lg sm:text-xl font-semibold text-gray-900 mb-3 sm:mb-4">Order Summary</h2>
               
               <div className="space-y-3 sm:space-y-4 mb-4 sm:mb-6 max-h-60 sm:max-h-80 overflow-y-auto">

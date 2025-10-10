@@ -281,7 +281,7 @@ const CartPage = () => {
 
             {/* Order Summary */}
             <div className="lg:w-1/3">
-              <div className="bg-white rounded-2xl shadow-xl p-6 border border-blue-200 sticky top-28">
+              <div className="bg-white rounded-2xl shadow-xl p-6 pt-8 border border-blue-200 sticky top-28">
                 <h2 className="text-2xl font-bold text-gray-800 mb-6 flex items-center gap-2">
                   <ShoppingCart className="text-blue-600" />
                   Order Summary
@@ -552,7 +552,7 @@ const CartPage = () => {
 
             {/* Order Summary Sidebar */}
             <div className="lg:col-span-1">
-              <div className="bg-white rounded-2xl shadow-xl p-6 border border-blue-200 sticky top-28">
+              <div className="bg-white rounded-2xl shadow-xl p-6 pt-8 border border-blue-200 sticky top-28">
                 <h2 className="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
                   <ShoppingCart className="text-blue-600" />
                   Order Summary
