@@ -42,6 +42,9 @@ const authRoutes = require('./routes/auth');
 const uploadRoutes = require('./routes/upload');
 const orderRoutes = require('./routes/orders');
 const cloudinaryRoutes = require('./routes/cloudinary');
+const { router: adminAuthRoutes } = require('./routes/adminAuth');
+const adminProductRoutes = require('./routes/adminProducts');
+const adminOrderRoutes = require('./routes/adminOrders');
 
 // Health check endpoint
 app.get('/', (req, res) => {
@@ -81,6 +84,11 @@ app.use('/api/auth', authRoutes);
 app.use('/api/upload', uploadRoutes);
 app.use('/api/orders', orderRoutes);
 app.use('/api/cloudinary', cloudinaryRoutes);
+
+// Admin routes
+app.use('/api/admin/auth', adminAuthRoutes);
+app.use('/api/admin/products', adminProductRoutes);
+app.use('/api/admin/orders', adminOrderRoutes);
 
 // Add stationery endpoints
 app.get('/stationery', async (req, res) => {

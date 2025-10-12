@@ -13,6 +13,13 @@ import OrdersPage from './OrdersPage';
 import { SignedIn, SignedOut, RedirectToSignIn } from '@clerk/clerk-react';
 import { RouteLoader } from './components/RouteLoader';
 
+// Admin Components
+import AdminLogin from './AdminLogin';
+import AdminLayout from './admin/AdminLayout';
+import AdminDashboard from './admin/AdminDashboard';
+import ProductManagement from './admin/ProductManagement';
+import OrderManagement from './admin/OrderManagement';
+
 // Protected Route Component
 const ProtectedRoute = ({ children }: { children: React.ReactNode }) => {
   return (
@@ -31,43 +38,50 @@ function App() {
   return (
     <Router>
       <RouteLoader />
-      <Navbar />
       <Routes>
         {/* Public Routes */}
-        <Route path="/" element={<LandingPage />} />
-        <Route path="/stationery" element={<StationeryPage />} />
-        <Route path="/contact" element={<ContactUs />} />
-        <Route path="/login" element={<LoginPage />} />
-        <Route path="/cart" element={<CartPage />} />
+        <Route path="/" element={<><Navbar /><LandingPage /></>} />
+        <Route path="/stationery" element={<><Navbar /><StationeryPage /></>} />
+        <Route path="/contact" element={<><Navbar /><ContactUs /></>} />
+        <Route path="/login" element={<><Navbar /><LoginPage /></>} />
+        <Route path="/cart" element={<><Navbar /><CartPage /></>} />
+        
+        {/* Admin Routes */}
+        <Route path="/admin/login" element={<AdminLogin />} />
+        <Route path="/admin/*" element={<AdminLayout />}>
+          <Route path="dashboard" element={<AdminDashboard />} />
+          <Route path="products" element={<ProductManagement />} />
+          <Route path="orders" element={<OrderManagement />} />
+        </Route>
 
         {/* Protected Routes */}
         <Route path="/upload" element={
           <ProtectedRoute>
-            <PrintPage />
+            <><Navbar /><PrintPage /></>
           </ProtectedRoute>
         } />
         
         <Route path="/checkout" element={
           <ProtectedRoute>
-            <CartPage />
+            <><Navbar /><CartPage /></>
           </ProtectedRoute>
         } />
         
         <Route path="/payment" element={
           <ProtectedRoute>
-            <PaymentPage />
+            <><Navbar /><PaymentPage /></>
           </ProtectedRoute>
         } />
         
         <Route path="/order-success" element={
           <ProtectedRoute>
-            <OrderSuccessPage />
+            <><Navbar /><OrderSuccessPage /></>
           </ProtectedRoute>
         } />
         
         <Route path="/orders" element={
           <ProtectedRoute>
-            <OrdersPage />
+            <><Navbar /><OrdersPage /></>
           </ProtectedRoute>
         } />
       </Routes>

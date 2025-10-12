@@ -6,7 +6,8 @@ CREATE TABLE IF NOT EXISTS products (
   price DECIMAL(10, 2) NOT NULL,
   category VARCHAR(100),
   image VARCHAR(255),
-  created_at TIMESTAMP DEFAULT NOW()
+  created_at TIMESTAMP DEFAULT NOW(),
+  updated_at TIMESTAMP DEFAULT NOW()
 );
 
 -- Add some indexes for better performance
@@ -25,5 +26,5 @@ INSERT INTO products (name, description, price, category, image) VALUES
   ('Mechanical Pencil', '0.5mm Lead', 1078.17, 'Pens & Pencils', 'https://images.unsplash.com/photo-1595079676339-1534801ad6cf?auto=format&fit=crop&w=800'),
   ('Desk Organizer Set', 'Gold Accent', 2499.17, 'Office Supplies', 'https://images.unsplash.com/photo-1544457070-4cd773b4d71e?auto=format&fit=crop&w=800'),
   ('Washi Tape Set', '10 Patterns', 1327.17, 'Art Supplies', 'https://images.unsplash.com/photo-1615486511484-92e172cc4fe0?auto=format&fit=crop&w=800'),
-  ('Leather Pencil Case', 'Genuine Leather', 3329.17, 'Office Supplies', 'https://images.unsplash.com/photo-1544027993-37dbfe43562a?auto=format&fit=crop&w=800'),
+  ('Leather Pencil Case', 'Genuine Leather', 3329.17, 'Office Supplies', 'https://images.unsplash.com/photo-1544457070-4cd773b4d71e?auto=format&fit=crop&w=800'),
   ('Desk Calendar', 'Wooden Stand', 1908.17, 'Office Supplies', 'https://images.unsplash.com/photo-1506784365847-bbad939e9335?auto=format&fit=crop&w=800');
