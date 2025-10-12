@@ -22,9 +22,32 @@ const AdminLogin: React.FC = () => {
         body: JSON.stringify({ email, password }),
       });
 
-      const data = await response.json();
+      // Check if response is ok and has content
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
 
-      if (response.ok) {
+      // Check if response has content before parsing JSON
+      const contentType = response.headers.get('content-type');
+      if (!contentType || !contentType.includes('application/json')) {
+        throw new Error('Response is not JSON');
+      }
+
+      const text = await response.text();
+      if (!text) {
+        throw new Error('Empty response from server');
+      }
+
+      let data;
+      try {
+        data = JSON.parse(text);
+      } catch (parseError) {
+        console.error('JSON parse error:', parseError);
+        console.error('Response text:', text);
+        throw new Error('Invalid JSON response from server');
+      }
+
+      if (data.success && data.token) {
         // Store token in localStorage
         localStorage.setItem('adminToken', data.token);
         // Redirect to admin dashboard
@@ -33,7 +56,8 @@ const AdminLogin: React.FC = () => {
         setError(data.error || 'Login failed');
       }
     } catch (err) {
-      setError('An error occurred during login');
+      const errorMessage = err instanceof Error ? err.message : 'An error occurred during login';
+      setError(errorMessage);
       console.error('Login error:', err);
     } finally {
       setLoading(false);
