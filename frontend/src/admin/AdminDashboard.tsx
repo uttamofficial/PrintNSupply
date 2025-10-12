@@ -23,13 +23,13 @@ const AdminDashboard: React.FC = () => {
     const fetchStats = async () => {
       try {
         // Fetch product stats
-        const productResponse = await fetch('/api/admin/products/stats/overview', {
+        const productResponse = await fetch(`${import.meta.env.VITE_API_URL}/api/admin/products/stats/overview`, {
           headers: {
             'Authorization': `Bearer ${localStorage.getItem('adminToken')}`,
           },
         });
         
-        const orderResponse = await fetch('/api/admin/orders/stats/overview', {
+        const orderResponse = await fetch(`${import.meta.env.VITE_API_URL}/api/admin/orders/stats/overview`, {
           headers: {
             'Authorization': `Bearer ${localStorage.getItem('adminToken')}`,
           },

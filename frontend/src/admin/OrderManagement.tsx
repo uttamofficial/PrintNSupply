@@ -142,7 +142,7 @@ const OrderManagement: React.FC = () => {
 
   const fetchOrders = async () => {
     try {
-      let url = '/api/admin/orders';
+      let url = `${import.meta.env.VITE_API_URL}/api/admin/orders`;
       if (statusFilter !== 'all') {
         url += `?status=${statusFilter}`;
       }

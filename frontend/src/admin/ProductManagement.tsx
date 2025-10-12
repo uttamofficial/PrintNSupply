@@ -49,7 +49,7 @@ const ProductManagement: React.FC = () => {
       setLoading(true);
       
       // Fetch all products at once to avoid pagination issues
-      const response = await fetch('/api/admin/products?all=true', {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/admin/products?all=true`, {
         headers: {
           'Authorization': `Bearer ${localStorage.getItem('adminToken')}`,
         },
@@ -87,8 +87,8 @@ const ProductManagement: React.FC = () => {
     
     try {
       const url = editingProduct 
-        ? `/api/admin/products/${editingProduct.id}`
-        : '/api/admin/products';
+        ? `${import.meta.env.VITE_API_URL}/api/admin/products/${editingProduct.id}`
+        : `${import.meta.env.VITE_API_URL}/api/admin/products`;
         
       const method = editingProduct ? 'PUT' : 'POST';
       
