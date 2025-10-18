@@ -30,8 +30,8 @@ export function Features() {
     <section className="relative py-16 md:py-24 bg-gradient-to-b from-blue-50 via-sky-50 to-white overflow-hidden">
       {/* Background Elements */}
       <div className="absolute inset-0 bg-grid-pattern opacity-5"></div>
-      <div className="absolute top-1/4 left-0 w-96 h-96 bg-blue-200 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-float"></div>
-      <div className="absolute bottom-1/4 right-0 w-96 h-96 bg-indigo-200 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-float animation-delay-2000"></div>
+      <div className="absolute top-1/4 left-0 w-64 h-64 sm:w-80 sm:h-80 md:w-96 md:h-96 bg-blue-200 rounded-full mix-blend-multiply filter blur-2xl sm:blur-3xl opacity-30 animate-float"></div>
+      <div className="absolute bottom-1/4 right-0 w-64 h-64 sm:w-80 sm:h-80 md:w-96 md:h-96 bg-indigo-200 rounded-full mix-blend-multiply filter blur-2xl sm:blur-3xl opacity-30 animate-float animation-delay-2000"></div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
@@ -46,7 +46,7 @@ export function Features() {
             <Star className="w-3 md:w-4 h-3 md:h-4 text-blue-600" />
             <span className="text-xs md:text-sm font-semibold text-blue-900">Why Choose Us</span>
           </div>
-          <h2 className="text-3xl md:text-5xl lg:text-6xl font-black text-transparent bg-clip-text bg-gradient-to-r from-blue-900 via-blue-700 to-indigo-900 mb-3 md:mb-6">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-black text-transparent bg-clip-text bg-gradient-to-r from-blue-900 via-blue-700 to-indigo-900 mb-3 md:mb-6">
             Exceptional Features
           </h2>
           <p className="text-sm md:text-lg text-gray-600 max-w-2xl mx-auto">
@@ -80,17 +80,17 @@ export function Features() {
                 </div>
 
                 {/* Icon */}
-                <div className={`relative inline-flex items-center justify-center w-12 h-12 md:w-16 md:h-16 rounded-xl md:rounded-2xl bg-gradient-to-br ${feature.gradient} mb-4 md:mb-6 transform group-hover:scale-110 group-hover:rotate-6 transition-all duration-500 shadow-md`}>
-                  <div className="[&>svg]:w-6 [&>svg]:h-6 md:[&>svg]:w-8 md:[&>svg]:h-8 text-white">
+                <div className={`relative inline-flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 lg:w-16 lg:h-16 rounded-xl md:rounded-2xl bg-gradient-to-br ${feature.gradient} mb-4 md:mb-6 transform group-hover:scale-110 group-hover:rotate-6 transition-all duration-500 shadow-md`}>
+                  <div className="[&>svg]:w-5 [&>svg]:h-5 sm:[&>svg]:w-6 sm:[&>svg]:h-6 md:[&>svg]:w-7 md:[&>svg]:h-7 lg:[&>svg]:w-8 lg:[&>svg]:h-8 text-white">
                     {feature.icon}
                   </div>
                 </div>
 
                 {/* Content */}
-                <h3 className="relative text-lg md:text-2xl font-bold text-gray-900 mb-2 md:mb-3 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-blue-700 group-hover:to-indigo-700 transition-all duration-300">
+                <h3 className="relative text-base sm:text-lg md:text-xl lg:text-2xl font-bold text-gray-900 mb-2 md:mb-3 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-blue-700 group-hover:to-indigo-700 transition-all duration-300">
                   {feature.title}
                 </h3>
-                <p className="relative text-sm md:text-base text-gray-600 leading-relaxed">
+                <p className="relative text-sm sm:text-base text-gray-600 leading-relaxed">
                   {feature.description}
                 </p>
 
