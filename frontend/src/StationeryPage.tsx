@@ -152,43 +152,43 @@ function StationeryPage() {
               {/* Mobile Filter Toggle */}
               <div className="md:hidden mb-2">
                 <button
-                  className="w-full bg-gradient-to-r from-blue-600 to-indigo-600 text-white py-3 px-4 font-bold rounded-xl shadow-lg flex justify-center items-center gap-2 focus:outline-none hover:from-blue-700 hover:to-indigo-700 transition-all text-base"
+                  className="w-full bg-gradient-to-r from-blue-600 to-indigo-600 text-white py-2.5 px-3 font-bold rounded-lg shadow-md flex justify-center items-center gap-2 focus:outline-none hover:from-blue-700 hover:to-indigo-700 transition-all text-sm"
                   onClick={() => setIsFilterOpen(!isFilterOpen)}
                 >
-                  <span className="text-lg">{isFilterOpen ? "✕" : "🔍"}</span>
+                  <span className="text-base">{isFilterOpen ? "✕" : "🔍"}</span>
                   {isFilterOpen ? "Hide Filters" : "Show Filters"}
                 </button>
               </div>
 
               {/* Desktop & Mobile Filters */}
-              <div className={`bg-white rounded-2xl shadow-xl border border-blue-200 overflow-hidden ${isFilterOpen ? 'block' : 'hidden md:block'}`}>
-                <div className="bg-gradient-to-r from-blue-600 to-indigo-600 text-white p-6">
-                  <h2 className="text-2xl font-bold flex items-center gap-2">
+              <div className={`bg-white rounded-xl shadow-lg border border-blue-200 overflow-hidden ${isFilterOpen ? 'block' : 'hidden md:block'}`}>
+                <div className="bg-gradient-to-r from-blue-600 to-indigo-600 text-white p-4">
+                  <h2 className="text-xl font-bold flex items-center gap-2">
                     <span>🔍</span>
                     Filters
                   </h2>
                 </div>
 
-                <div className="p-6 space-y-8">
+                <div className="p-4 space-y-6">
                   {/* Categories */}
                   <div>
-                    <h3 className="text-lg font-bold text-gray-800 mb-4 flex items-center gap-2">
-                      <span className="text-xl">📂</span>
+                    <h3 className="text-base font-bold text-gray-800 mb-3 flex items-center gap-2">
+                      <span className="text-lg">📂</span>
                       Categories
                     </h3>
-                    <div className="space-y-3">
+                    <div className="space-y-2">
                       {categories.map((category) => (
                         <label
                           key={category}
-                          className="flex items-center cursor-pointer group hover:bg-blue-50 p-2 rounded-lg transition-all"
+                          className="flex items-center cursor-pointer group hover:bg-blue-50 p-1.5 rounded-lg transition-all"
                         >
                           <input
                             type="checkbox"
                             checked={selectedCategories.includes(category)}
                             onChange={() => handleCategoryChange(category)}
-                            className="h-5 w-5 text-blue-600 focus:ring-blue-500 border-gray-300 rounded cursor-pointer"
+                            className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded cursor-pointer"
                           />
-                          <span className="ml-3 text-sm font-medium text-gray-700 group-hover:text-blue-600 transition-colors">
+                          <span className="ml-2.5 text-sm font-medium text-gray-700 group-hover:text-blue-600 transition-colors">
                             {category}
                           </span>
                         </label>
@@ -198,8 +198,8 @@ function StationeryPage() {
 
                   {/* Price Range */}
                   <div>
-                    <h3 className="text-lg font-bold text-gray-800 mb-4 flex items-center gap-2">
-                      <span className="text-xl">💰</span>
+                    <h3 className="text-base font-bold text-gray-800 mb-3 flex items-center gap-2">
+                      <span className="text-lg">💰</span>
                       Price Range
                     </h3>
                     <PriceRangeSlider
@@ -207,17 +207,17 @@ function StationeryPage() {
                       onChange={setPriceRange}
                       max={1000}
                     />
-                    <div className="mt-3 p-3 bg-gradient-to-r from-blue-50 to-indigo-50 rounded-lg border border-blue-200">
+                    <div className="mt-2 p-2.5 bg-gradient-to-r from-blue-50 to-indigo-50 rounded-lg border border-blue-200">
                       <p className="text-sm text-gray-600">
-                        Maximum Price: <span className="font-bold text-blue-600 text-lg">₹{priceRange.toLocaleString('en-IN')}</span>
+                        Maximum Price: <span className="font-bold text-blue-600 text-base">₹{priceRange.toLocaleString('en-IN')}</span>
                       </p>
                     </div>
                   </div>
 
                   {/* Results Count */}
-                  <div className="p-4 bg-gradient-to-r from-green-50 to-emerald-50 rounded-lg border border-green-200">
+                  <div className="p-3 bg-gradient-to-r from-green-50 to-emerald-50 rounded-lg border border-green-200">
                     <p className="text-sm font-semibold text-gray-700">
-                      <span className="text-green-600 text-2xl">✓</span> {filteredProducts.length} Products Found
+                      <span className="text-green-600 text-xl">✓</span> {filteredProducts.length} Products Found
                     </p>
                   </div>
                 </div>

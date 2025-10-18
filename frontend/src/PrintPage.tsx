@@ -280,32 +280,32 @@ function PrintPage() {
       
       {/* Success Toast */}
       {showSuccess && (
-        <div className="fixed top-20 right-4 bg-green-500 text-white px-6 py-3 rounded-lg shadow-lg z-50 flex items-center gap-2 animate-slide-in">
-          <CheckCircle2 size={20} />
+        <div className="fixed top-20 right-4 bg-green-500 text-white px-5 py-2.5 rounded-lg shadow-lg z-50 flex items-center gap-2 animate-slide-in">
+          <CheckCircle2 size={18} />
           <span>Added to cart successfully!</span>
         </div>
       )}
 
       {/* Main Content */}
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 pt-28">
+      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 pt-20">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
           {/* Left Column - Upload & Files */}
           <div className="lg:col-span-7">
-            <div className="bg-white rounded-xl shadow-md p-6">
-              <h2 className="text-xl font-bold text-gray-800 mb-4 flex items-center gap-2">
-                <Upload className="h-5 w-5 text-blue-600" />
+            <div className="bg-white rounded-lg shadow-md p-4">
+              <h2 className="text-lg font-bold text-gray-800 mb-3 flex items-center gap-2">
+                <Upload className="h-4 w-4 text-blue-600" />
                 Upload Files
               </h2>
 
               {/* Error Message */}
               {uploadError && (
-                <div className="mb-4 p-3 bg-red-50 border border-red-200 rounded-lg text-red-700 text-sm">
+                <div className="mb-3 p-2.5 bg-red-50 border border-red-200 rounded-lg text-red-700 text-sm">
                   {uploadError}
                 </div>
               )}
 
               {/* Compact Upload Area */}
-              <div className="border-2 border-dashed border-gray-300 rounded-lg p-16 py-24 text-center hover:border-blue-400 transition-colors mb-4 min-h-[400px] flex items-center justify-center">
+              <div className="border-2 border-dashed border-gray-300 rounded-lg p-12 py-20 text-center hover:border-blue-400 transition-colors mb-3 min-h-[340px] flex items-center justify-center">
                 <input
                   type="file"
                   id="file-upload"
@@ -319,8 +319,8 @@ function PrintPage() {
                   htmlFor="file-upload"
                   className={`cursor-pointer flex flex-col items-center ${uploading ? 'opacity-50 cursor-not-allowed' : ''}`}
                 >
-                  <Upload className={`h-20 w-20 ${uploading ? 'text-gray-400' : 'text-blue-600'}`} />
-                  <p className="mt-6 text-xl text-gray-600">
+                  <Upload className={`h-16 w-16 ${uploading ? 'text-gray-400' : 'text-blue-600'}`} />
+                  <p className="mt-5 text-lg text-gray-600">
                     {uploading ? (
                       <>Uploading files... Please wait</>
                     ) : (
@@ -338,20 +338,20 @@ function PrintPage() {
               {/* File List - Scrollable */}
               {files.length > 0 && (
                 <div>
-                  <h3 className="text-sm font-semibold text-gray-700 mb-3 flex items-center justify-between">
+                  <h3 className="text-sm font-semibold text-gray-700 mb-2 flex items-center justify-between">
                     <span>Uploaded Files ({files.length})</span>
                     <span className="text-xs font-normal text-gray-500">
                       {files.reduce((sum, f) => sum + f.size, 0).toFixed(2)} MB
                     </span>
                   </h3>
-                  <div className="space-y-2 max-h-[400px] overflow-y-auto pr-2">
+                  <div className="space-y-2 max-h-[340px] overflow-y-auto pr-2">
                     {files.map((file, index) => (
                       <div
                         key={index}
-                        className="flex items-center justify-between bg-gray-50 p-3 rounded-lg border border-gray-200 hover:border-blue-300 transition-colors"
+                        className="flex items-center justify-between bg-gray-50 p-2.5 rounded-lg border border-gray-200 hover:border-blue-300 transition-colors"
                       >
                         <div className="flex items-center flex-1 min-w-0">
-                          <FileText className="h-5 w-5 text-blue-500 mr-2 flex-shrink-0" />
+                          <FileText className="h-4 w-4 text-blue-500 mr-2 flex-shrink-0" />
                           <div className="flex-1 min-w-0">
                             <p className="text-sm font-medium text-gray-800 truncate">{file.name}</p>
                             <p className="text-xs text-gray-500">
@@ -406,10 +406,10 @@ function PrintPage() {
 
           {/* Right Column - Settings & Pricing */}
           <div className="lg:col-span-5">
-            <div className="bg-white rounded-xl shadow-md p-6 sticky top-20">
-              <h2 className="text-xl font-bold text-gray-800 mb-4">Print Settings</h2>
+            <div className="bg-white rounded-lg shadow-md p-4 sticky top-20">
+              <h2 className="text-lg font-bold text-gray-800 mb-3">Print Settings</h2>
 
-              <div className="space-y-4">
+              <div className="space-y-3">
                 {/* Pages, Copies and Binding - Same Row */}
                 <div className="grid grid-cols-3 gap-3">
                   {/* Pages (Read-only) */}
@@ -465,13 +465,13 @@ function PrintPage() {
 
                 {/* Color Option */}
                 <div>
-                  <label className="block text-xs font-medium text-gray-700 mb-2">
+                  <label className="block text-xs font-medium text-gray-700 mb-1.5">
                     Color Option
                   </label>
                   <div className="grid grid-cols-2 gap-2">
                     <button
                       onClick={() => setColorOption('Black & White')}
-                      className={`p-3 rounded-lg border-2 transition-all text-sm font-medium ${
+                      className={`p-2.5 rounded-lg border-2 transition-all text-sm font-medium ${
                         colorOption === 'Black & White'
                           ? 'border-blue-500 bg-blue-50 text-blue-700'
                           : 'border-gray-200 hover:border-gray-300'
@@ -482,7 +482,7 @@ function PrintPage() {
                     </button>
                     <button
                       onClick={() => setColorOption('Full Color')}
-                      className={`p-3 rounded-lg border-2 transition-all text-sm font-medium ${
+                      className={`p-2.5 rounded-lg border-2 transition-all text-sm font-medium ${
                         colorOption === 'Full Color'
                           ? 'border-blue-500 bg-blue-50 text-blue-700'
                           : 'border-gray-200 hover:border-gray-300'
@@ -495,7 +495,7 @@ function PrintPage() {
                   
                   {/* Specific Color Pages Input */}
                   {colorOption === 'Black & White' && files.length > 0 && (
-                    <div className="mt-3 p-3 bg-blue-50 rounded-lg border border-blue-200">
+                    <div className="mt-2 p-2.5 bg-blue-50 rounded-lg border border-blue-200">
                       <label className="block text-xs font-medium text-gray-700 mb-1">
                         Specific Pages in Color (Optional)
                       </label>
@@ -504,7 +504,7 @@ function PrintPage() {
                         value={colorPages}
                         onChange={(e) => setColorPages(e.target.value)}
                         placeholder="e.g., 1,3,5-8"
-                        className="w-full px-3 py-2 text-sm border border-blue-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                        className="w-full px-2.5 py-1.5 text-sm border border-blue-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                       />
                       <p className="text-[10px] text-gray-600 mt-1">
                         Enter page numbers or ranges. Example: "1,3,5-8" will print pages 1, 3, and 5 through 8 in color
@@ -515,7 +515,7 @@ function PrintPage() {
 
                 {/* Orientation */}
                 <div>
-                  <label className="block text-xs font-medium text-gray-700 mb-2">
+                  <label className="block text-xs font-medium text-gray-700 mb-1.5">
                     Orientation
                   </label>
                   <div className="grid grid-cols-2 gap-2">
@@ -544,7 +544,7 @@ function PrintPage() {
 
                 {/* Stick Files Options - Single Row */}
                 <div>
-                  <label className="block text-xs font-medium text-gray-700 mb-2">
+                  <label className="block text-xs font-medium text-gray-700 mb-1.5">
                     Add Stick Files (Optional)
                   </label>
                   <div className="grid grid-cols-3 gap-2">
@@ -552,7 +552,7 @@ function PrintPage() {
                       <button
                         key={sticker.id}
                         onClick={() => toggleSticker(sticker.id)}
-                        className={`p-3 rounded-lg border-2 transition-all text-sm font-medium ${
+                        className={`p-2.5 rounded-lg border-2 transition-all text-sm font-medium ${
                           sticker.selected
                             ? 'border-blue-500 bg-blue-50 text-blue-700'
                             : 'border-gray-200 hover:border-blue-300'
@@ -575,13 +575,13 @@ function PrintPage() {
                     value={instructions}
                     onChange={(e) => setInstructions(e.target.value)}
                     rows={2}
-                    className="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                    className="w-full px-2.5 py-2 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                     placeholder="Any special requirements..."
                   />
                 </div>
 
                 {/* Price Summary - Compact */}
-                <div className="border-t pt-4 mt-4">
+                <div className="border-t pt-3 mt-3">
                   <div className="space-y-1.5 text-xs">
                     {/* Show detailed breakdown if specific color pages are selected */}
                     {colorOption === 'Black & White' && colorPages.trim() && files.length > 0 ? (
@@ -649,9 +649,9 @@ function PrintPage() {
                 <button
                   onClick={handleAddToCart}
                   disabled={files.length === 0 || uploading}
-                  className="w-full bg-gradient-to-r from-blue-600 to-indigo-600 text-white py-3 rounded-lg hover:from-blue-700 hover:to-indigo-700 transition-all font-semibold shadow-lg disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                  className="w-full bg-gradient-to-r from-blue-600 to-indigo-600 text-white py-2.5 rounded-lg hover:from-blue-700 hover:to-indigo-700 transition-all font-semibold shadow-md disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
                 >
-                  <ShoppingCart size={18} />
+                  <ShoppingCart size={16} />
                   Add to Cart
                 </button>
                 
@@ -673,15 +673,15 @@ function PrintPage() {
           onClick={() => setPreviewPdf(null)}
         >
           <div 
-            className="bg-white rounded-xl shadow-2xl w-full max-w-6xl h-[90vh] flex flex-col"
+            className="bg-white rounded-lg shadow-2xl w-full max-w-6xl h-[90vh] flex flex-col"
             onClick={(e) => e.stopPropagation()}
           >
             {/* Modal Header */}
-            <div className="flex items-center justify-between p-4 border-b bg-gray-50 rounded-t-xl">
-              <div className="flex items-center gap-3">
-                <FileText className="h-6 w-6 text-blue-600" />
+            <div className="flex items-center justify-between p-3 border-b bg-gray-50 rounded-t-lg">
+              <div className="flex items-center gap-2.5">
+                <FileText className="h-5 w-5 text-blue-600" />
                 <div>
-                  <h3 className="text-lg font-semibold text-gray-800">PDF Preview</h3>
+                  <h3 className="text-base font-semibold text-gray-800">PDF Preview</h3>
                   <p className="text-sm text-gray-600">{previewPdf.name}</p>
                 </div>
               </div>
@@ -690,7 +690,7 @@ function PrintPage() {
                 <a
                   href={previewPdf.downloadUrl || previewPdf.url}
                   download
-                  className="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 text-sm font-medium transition-colors flex items-center gap-2"
+                  className="px-3 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 text-sm font-medium transition-colors flex items-center gap-2"
                 >
                   <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
@@ -703,7 +703,7 @@ function PrintPage() {
                   className="p-2 hover:bg-gray-200 rounded-lg transition-colors"
                   title="Close preview"
                 >
-                  <X className="h-6 w-6 text-gray-600" />
+                  <X className="h-5 w-5 text-gray-600" />
                 </button>
               </div>
             </div>
@@ -718,7 +718,7 @@ function PrintPage() {
             </div>
             
             {/* Modal Footer */}
-            <div className="p-4 border-t bg-gray-50 rounded-b-xl flex items-center justify-between">
+            <div className="p-3 border-t bg-gray-50 rounded-b-lg flex items-center justify-between">
               <div className="text-sm text-gray-600">
                 <span className="font-medium">{previewPdf.size.toFixed(2)} MB</span>
                 {previewPdf.pageCount && previewPdf.pageCount > 1 && (
@@ -727,7 +727,7 @@ function PrintPage() {
               </div>
               <button
                 onClick={() => setPreviewPdf(null)}
-                className="px-4 py-2 bg-gray-600 text-white rounded-lg hover:bg-gray-700 transition-colors font-medium"
+                className="px-3 py-2 bg-gray-600 text-white rounded-lg hover:bg-gray-700 transition-colors font-medium text-sm"
               >
                 Close Preview
               </button>

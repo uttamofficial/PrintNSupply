@@ -39,7 +39,7 @@ export default function Navbar() {
           : 'bg-gradient-to-r from-white/95 via-blue-50/95 to-white/95 backdrop-blur-xl shadow-lg border-b border-blue-200/30'
       }`}>
         <div className="max-w-7xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16 sm:h-18 md:h-20">
+          <div className="flex justify-between items-center h-14 sm:h-15 md:h-16">
             {/* Left Section - Mobile Menu Button */}
             <div className="flex items-center">
               {/* Mobile Menu Button */}
@@ -113,32 +113,32 @@ export default function Navbar() {
 
                 {/* Cart Dropdown */}
                 {isCartDropdownOpen && (
-                  <div className="absolute right-0 mt-2 w-64 bg-white/95 backdrop-blur-xl rounded-2xl shadow-2xl border border-blue-200/50 overflow-hidden z-50 animate-[fadeIn_0.2s_ease-in]">
-                    <div className="p-4 border-b border-blue-100/50">
-                      <h3 className="font-semibold text-gray-800 flex items-center gap-2">
-                        <ShoppingCart className="w-4 h-4 text-blue-600" />
+                  <div className="absolute right-0 mt-2 w-48 bg-white/95 backdrop-blur-xl rounded-xl shadow-2xl border border-blue-200/50 overflow-hidden z-50 animate-[fadeIn_0.2s_ease-in]">
+                    <div className="p-2.5 border-b border-blue-100/50">
+                      <h3 className="text-xs font-semibold text-gray-800 flex items-center gap-1.5">
+                        <ShoppingCart className="w-3 h-3 text-blue-600" />
                         Shopping Cart
-                        {cartCount > 0 && <span className="ml-auto bg-blue-600 text-white text-xs font-bold rounded-full px-2 py-1">{cartCount} items</span>}
+                        {cartCount > 0 && <span className="ml-auto bg-blue-600 text-white text-[10px] font-bold rounded-full px-1.5 py-0.5">{cartCount} items</span>}
                       </h3>
                     </div>
-                    <div className="p-2">
-                      <Link href="/checkout" onClick={() => setIsCartDropdownOpen(false)} className="flex items-center gap-3 px-3 py-3 hover:bg-blue-50/50 rounded-xl transition-colors duration-200">
-                        <div className="w-8 h-8 bg-gradient-to-r from-blue-500 to-indigo-500 rounded-lg flex items-center justify-center">
-                          <ShoppingCart className="w-4 h-4 text-white" />
+                    <div className="p-1.5">
+                      <Link href="/checkout" onClick={() => setIsCartDropdownOpen(false)} className="flex items-center gap-2 px-2 py-2 hover:bg-blue-50/50 rounded-lg transition-colors duration-200">
+                        <div className="w-6 h-6 bg-gradient-to-r from-blue-500 to-indigo-500 rounded-lg flex items-center justify-center">
+                          <ShoppingCart className="w-3 h-3 text-white" />
                         </div>
                         <div>
-                          <span className="font-semibold text-gray-700">View Cart</span>
-                          <p className="text-xs text-gray-500">Checkout your items</p>
+                          <span className="text-xs font-semibold text-gray-700">View Cart</span>
+                          <p className="text-[9px] text-gray-500">Checkout your items</p>
                         </div>
                       </Link>
                       <SignedIn>
-                        <Link href="/orders" onClick={() => setIsCartDropdownOpen(false)} className="flex items-center gap-3 px-3 py-3 hover:bg-blue-50/50 rounded-xl transition-colors duration-200">
-                          <div className="w-8 h-8 bg-gradient-to-r from-green-500 to-emerald-500 rounded-lg flex items-center justify-center">
-                            <Package className="w-4 h-4 text-white" />
+                        <Link href="/orders" onClick={() => setIsCartDropdownOpen(false)} className="flex items-center gap-2 px-2 py-2 hover:bg-blue-50/50 rounded-lg transition-colors duration-200">
+                          <div className="w-6 h-6 bg-gradient-to-r from-green-500 to-emerald-500 rounded-lg flex items-center justify-center">
+                            <Package className="w-3 h-3 text-white" />
                           </div>
                           <div>
-                            <span className="font-semibold text-gray-700">Order History</span>
-                            <p className="text-xs text-gray-500">Track your orders</p>
+                            <span className="text-xs font-semibold text-gray-700">Order History</span>
+                            <p className="text-[9px] text-gray-500">Track your orders</p>
                           </div>
                         </Link>
                       </SignedIn>

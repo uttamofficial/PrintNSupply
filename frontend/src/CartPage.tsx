@@ -130,13 +130,13 @@ const CartPage = () => {
     return (
       <div className="min-h-screen bg-gradient-to-br from-sky-50 via-blue-50 to-indigo-50">
         <div className="flex-1 flex items-center justify-center min-h-[80vh]">
-          <div className="text-center p-12">
-            <ShoppingCart className="w-24 h-24 text-blue-300 mx-auto mb-6" />
-            <h2 className="text-3xl font-bold text-gray-800 mb-4">Your cart is empty</h2>
-            <p className="text-gray-600 mb-8">Looks like you haven't added anything yet!</p>
+          <div className="text-center p-8">
+            <ShoppingCart className="w-20 h-20 text-blue-300 mx-auto mb-5" />
+            <h2 className="text-2xl font-bold text-gray-800 mb-3">Your cart is empty</h2>
+            <p className="text-gray-600 mb-6">Looks like you haven't added anything yet!</p>
             <button
               onClick={() => navigate('/stationery')}
-              className="px-8 py-4 bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded-xl hover:from-blue-700 hover:to-indigo-700 transition-all transform hover:scale-105 font-semibold shadow-lg"
+              className="px-6 py-3 bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded-lg hover:from-blue-700 hover:to-indigo-700 transition-all transform hover:scale-105 font-semibold shadow-md"
             >
               Continue Shopping
             </button>
@@ -151,35 +151,35 @@ const CartPage = () => {
     <div className="min-h-screen bg-gradient-to-br from-sky-50 via-blue-50 to-indigo-50">
       {/* Progress Steps */}
       <div className="bg-white border-b border-blue-200 shadow-sm sticky top-0 z-40">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-          <div className="flex items-center justify-center gap-4">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+          <div className="flex items-center justify-center gap-3">
             {/* Step 1 */}
             <div className="flex items-center">
-              <div className={`flex items-center justify-center w-10 h-10 rounded-full font-bold transition-all ${
+              <div className={`flex items-center justify-center w-8 h-8 rounded-full font-bold transition-all ${
                 currentStep === 'cart' 
-                  ? 'bg-gradient-to-r from-blue-600 to-indigo-600 text-white shadow-lg' 
+                  ? 'bg-gradient-to-r from-blue-600 to-indigo-600 text-white shadow-md' 
                   : 'bg-green-500 text-white'
               }`}>
-                {currentStep === 'checkout' ? <Check size={20} /> : '1'}
+                {currentStep === 'checkout' ? <Check size={16} /> : '1'}
               </div>
-              <span className={`ml-2 font-semibold ${currentStep === 'cart' ? 'text-blue-600' : 'text-green-600'}`}>
+              <span className={`ml-2 font-semibold text-sm ${currentStep === 'cart' ? 'text-blue-600' : 'text-green-600'}`}>
                 Shopping Cart
               </span>
             </div>
 
             {/* Divider */}
-            <div className={`w-16 h-1 rounded ${currentStep === 'checkout' ? 'bg-green-500' : 'bg-gray-300'}`}></div>
+            <div className={`w-12 h-1 rounded ${currentStep === 'checkout' ? 'bg-green-500' : 'bg-gray-300'}`}></div>
 
             {/* Step 2 */}
             <div className="flex items-center">
-              <div className={`flex items-center justify-center w-10 h-10 rounded-full font-bold transition-all ${
+              <div className={`flex items-center justify-center w-8 h-8 rounded-full font-bold transition-all ${
                 currentStep === 'checkout' 
-                  ? 'bg-gradient-to-r from-blue-600 to-indigo-600 text-white shadow-lg' 
+                  ? 'bg-gradient-to-r from-blue-600 to-indigo-600 text-white shadow-md' 
                   : 'bg-gray-300 text-gray-600'
               }`}>
                 2
               </div>
-              <span className={`ml-2 font-semibold ${currentStep === 'checkout' ? 'text-blue-600' : 'text-gray-500'}`}>
+              <span className={`ml-2 font-semibold text-sm ${currentStep === 'checkout' ? 'text-blue-600' : 'text-gray-500'}`}>
                 Checkout
               </span>
             </div>
@@ -189,88 +189,87 @@ const CartPage = () => {
 
       {/* STEP 1: CART VIEW */}
       {currentStep === 'cart' && (
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 pt-8">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 pt-6">
           <div className="flex items-center justify-between mb-6">
-            <h1 className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600">
+            <h1 className="text-3xl sm:text-4xl font-black text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600">
               Shopping Cart
             </h1>
-            <span className="text-gray-600 font-semibold">{cart.length} {cart.length === 1 ? 'item' : 'items'}</span>
+            <span className="text-gray-700 font-bold text-base px-4 py-2 bg-white rounded-full shadow-md border-2 border-blue-200">
+              {cart.length} {cart.length === 1 ? 'item' : 'items'}
+            </span>
           </div>
 
-          <div className="flex flex-col lg:flex-row gap-8">
-            {/* Cart Items */}
-            <div className="lg:w-2/3">
-              <div className="bg-white rounded-2xl shadow-xl p-6 space-y-4 border border-blue-200">
+          <div className="flex flex-col lg:flex-row gap-6">
+            {/* Cart Items - Increased Width */}
+            <div className="lg:w-3/4">
+              <div className="bg-white rounded-2xl shadow-xl p-6 space-y-4 border-2 border-blue-200">
                 {cart.map(item => {
                   const isPrintJob = item.name.includes('Print Job');
                   
                   return (
                     <div
                       key={item.id}
-                      className="p-3 sm:p-4 rounded-xl bg-gradient-to-r from-sky-50 to-blue-50 hover:from-blue-50 hover:to-indigo-50 transition-all border border-blue-200"
+                      className="p-4 rounded-xl bg-gradient-to-r from-sky-50 via-blue-50 to-indigo-50 hover:from-blue-100 hover:via-indigo-100 hover:to-purple-100 transition-all border-2 border-blue-200 hover:border-blue-400 shadow-sm hover:shadow-md"
                     >
-                      {/* First Row: Image and Product Details */}
-                      <div className="flex items-center gap-3 mb-3">
+                      {/* Single Row Layout */}
+                      <div className="flex items-center gap-4">
                         {/* Product Image */}
                         <div className="relative flex-shrink-0">
                           <img
                             src={item.image}
                             alt={item.name}
-                            className={`w-16 h-16 sm:w-20 sm:h-20 object-cover rounded-lg shadow-md ${isPrintJob ? 'border-2 border-blue-400' : ''}`}
+                            className={`w-20 h-20 sm:w-24 sm:h-24 object-cover rounded-xl shadow-lg ${isPrintJob ? 'border-2 border-blue-500' : ''}`}
                           />
                           {isPrintJob && (
-                            <div className="absolute -top-1 -right-1 bg-blue-600 text-white rounded-full p-1 shadow-lg">
-                              <Printer size={12} />
+                            <div className="absolute -top-2 -right-2 bg-blue-600 text-white rounded-full p-1.5 shadow-lg">
+                              <Printer size={14} />
                             </div>
                           )}
                         </div>
 
-                        {/* Product Details - Name and Badge */}
+                        {/* Product Details */}
                         <div className="flex-1 min-w-0">
-                          <div className="flex items-center gap-1.5">
-                            {isPrintJob && <FileText size={16} className="text-blue-600 flex-shrink-0" />}
-                            <h3 className="text-sm sm:text-base font-bold text-gray-800 truncate">{item.name}</h3>
+                          <div className="flex items-start gap-2 mb-1">
+                            {isPrintJob && <FileText size={16} className="text-blue-600 flex-shrink-0 mt-0.5" />}
+                            <h3 className="text-base sm:text-lg font-bold text-gray-900">{item.name}</h3>
                           </div>
                           {isPrintJob && (
-                            <span className="inline-block mt-1 px-2 py-0.5 bg-blue-600 text-white text-xs font-bold rounded-full">
+                            <span className="inline-block px-2 py-1 bg-blue-600 text-white text-xs font-bold rounded-full">
                               📄 Print Work
                             </span>
                           )}
                           <p className="text-blue-600 font-semibold text-sm mt-1">₹{item.price.toLocaleString('en-IN')} each</p>
                         </div>
-                      </div>
 
-                      {/* Second Row: Quantity Controls, Price, and Delete Button */}
-                      <div className="flex items-center justify-between gap-3">
                         {/* Quantity Controls */}
-                        <div className="flex items-center gap-2 bg-white rounded-lg px-3 py-1.5 shadow-sm border border-blue-200">
+                        <div className="flex items-center gap-3 bg-white rounded-xl px-4 py-2.5 shadow-md border-2 border-blue-300">
                           <button
                             onClick={() => handleQuantityChange(item.id, item.quantity - 1)}
                             disabled={item.quantity <= 1}
-                            className="p-0.5 hover:bg-blue-50 rounded transition-colors disabled:opacity-50"
+                            className="p-1 hover:bg-blue-100 rounded-lg transition-colors disabled:opacity-50"
                           >
-                            <Minus size={16} className="text-blue-600" />
+                            <Minus size={18} className="text-blue-600" />
                           </button>
-                          <span className="text-base font-bold text-gray-800 min-w-[28px] text-center">{item.quantity}</span>
+                          <span className="text-lg font-bold text-gray-900 min-w-[32px] text-center">{item.quantity}</span>
                           <button
                             onClick={() => handleQuantityChange(item.id, item.quantity + 1)}
-                            className="p-0.5 hover:bg-blue-50 rounded transition-colors"
+                            className="p-1 hover:bg-blue-100 rounded-lg transition-colors"
                           >
-                            <Plus size={16} className="text-blue-600" />
+                            <Plus size={18} className="text-blue-600" />
                           </button>
                         </div>
 
-                        {/* Price */}
-                        <div className="text-lg sm:text-xl font-bold text-blue-600 flex-1 text-center">
+                        {/* Total Price */}
+                        <div className="text-xl sm:text-2xl font-black text-blue-600 min-w-[100px] text-right">
                           ₹{(item.price * item.quantity).toLocaleString('en-IN')}
                         </div>
 
                         {/* Remove Button */}
                         <button
                           onClick={() => removeFromCart(item.id)}
-                          className="p-2 bg-red-100 rounded-lg text-red-600 hover:bg-red-200 transition-colors"
+                          className="p-2 bg-red-100 rounded-xl text-red-600 hover:bg-red-200 hover:scale-110 transition-all shadow-md"
                         >
-                          <X size={18} />
+                          <X size={20} />
                         </button>
                       </div>
                     </div>
@@ -279,37 +278,37 @@ const CartPage = () => {
               </div>
             </div>
 
-            {/* Order Summary */}
-            <div className="lg:w-1/3">
-              <div className="bg-white rounded-2xl shadow-xl p-6 pt-8 border border-blue-200 sticky top-28">
-                <h2 className="text-2xl font-bold text-gray-800 mb-6 flex items-center gap-2">
-                  <ShoppingCart className="text-blue-600" />
+            {/* Order Summary - Reduced Width */}
+            <div className="lg:w-1/4">
+              <div className="bg-white rounded-2xl shadow-xl p-6 pt-7 border-2 border-blue-200 sticky top-28">
+                <h2 className="text-xl font-bold text-gray-800 mb-6 flex items-center gap-2">
+                  <ShoppingCart className="text-blue-600" size={22} />
                   Order Summary
                 </h2>
                 <div className="space-y-4">
-                  <div className="flex justify-between text-gray-700 text-lg">
+                  <div className="flex justify-between text-gray-700 text-base">
                     <span>Subtotal</span>
                     <span className="font-semibold">₹{subtotal.toLocaleString('en-IN')}</span>
                   </div>
-                  <div className="flex justify-between text-gray-700 text-lg">
+                  <div className="flex justify-between text-gray-700 text-base">
                     <span>Shipping</span>
                     <span className="font-semibold">₹{shipping.toLocaleString('en-IN')}</span>
                   </div>
-                  <div className="border-t-2 border-blue-200 pt-4 flex justify-between text-gray-900 font-bold text-2xl">
+                  <div className="border-t-2 border-blue-200 pt-4 flex justify-between text-gray-900 font-bold text-xl">
                     <span>Total</span>
                     <span className="text-blue-600">₹{total.toLocaleString('en-IN')}</span>
                   </div>
                   
                   <button 
                     onClick={() => setCurrentStep('checkout')}
-                    className="w-full bg-gradient-to-r from-blue-600 to-indigo-600 text-white py-4 rounded-xl hover:from-blue-700 hover:to-indigo-700 transition-all transform hover:scale-105 font-bold text-lg shadow-lg mt-6"
+                    className="w-full bg-gradient-to-r from-blue-600 to-indigo-600 text-white py-3.5 rounded-xl hover:from-blue-700 hover:to-indigo-700 transition-all transform hover:scale-105 font-bold text-base shadow-lg mt-6"
                   >
                     Proceed to Checkout →
                   </button>
 
                   <button 
                     onClick={() => navigate('/stationery')}
-                    className="w-full bg-white border-2 border-blue-600 text-blue-600 py-3 rounded-xl hover:bg-blue-50 transition-all font-semibold"
+                    className="w-full bg-white border-2 border-blue-600 text-blue-600 py-3 rounded-xl hover:bg-blue-50 transition-all font-semibold text-sm"
                   >
                     Continue Shopping
                   </button>
@@ -322,80 +321,80 @@ const CartPage = () => {
 
       {/* STEP 2: CHECKOUT VIEW */}
       {currentStep === 'checkout' && (
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
           <button
             onClick={() => setCurrentStep('cart')}
-            className="flex items-center gap-2 text-blue-600 hover:text-blue-700 font-semibold mb-6 transition-colors"
+            className="flex items-center gap-2 text-blue-600 hover:text-blue-700 font-semibold mb-5 transition-colors text-sm"
           >
-            <ArrowLeft size={20} />
+            <ArrowLeft size={18} />
             Back to Cart
           </button>
 
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-            {/* Checkout Form */}
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+            {/* Checkout Form - Reduced Width */}
             <div className="lg:col-span-2">
-              <form onSubmit={handleSubmit} className="bg-white rounded-2xl shadow-xl p-8 space-y-8 border border-blue-200">
-                <h1 className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600">
+              <form onSubmit={handleSubmit} className="bg-white rounded-xl shadow-lg p-5 space-y-5 border border-blue-200">
+                <h1 className="text-xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600">
                   Customer Information
                 </h1>
 
                 {/* Contact Information */}
                 <div>
-                  <h2 className="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
-                    <User className="text-blue-600" size={24} />
+                  <h2 className="text-base font-bold text-gray-900 mb-2.5 flex items-center gap-2">
+                    <User className="text-blue-600" size={18} />
                     Contact Details
                   </h2>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                     <div>
-                      <label className="block text-sm font-semibold text-gray-700 mb-2">
+                      <label className="block text-xs font-semibold text-gray-700 mb-1">
                         Full Name *
                       </label>
                       <input
                         type="text"
                         value={shippingAddress.fullName}
                         onChange={(e) => handleInputChange('fullName', e.target.value)}
-                        className={`w-full px-4 py-3 border-2 rounded-xl focus:ring-2 focus:ring-blue-500 transition-all ${
+                        className={`w-full px-2.5 py-2 text-sm border-2 rounded-lg focus:ring-2 focus:ring-blue-500 transition-all ${
                           errors.fullName ? 'border-red-500' : 'border-blue-200 focus:border-blue-500'
                         }`}
                         placeholder="John Doe"
                       />
                       {errors.fullName && (
-                        <p className="text-red-500 text-sm mt-1 font-semibold">{errors.fullName}</p>
+                        <p className="text-red-500 text-xs mt-1 font-semibold">{errors.fullName}</p>
                       )}
                     </div>
 
                     <div>
-                      <label className="block text-sm font-semibold text-gray-700 mb-2">
+                      <label className="block text-xs font-semibold text-gray-700 mb-1">
                         Email *
                       </label>
                       <div className="relative">
-                        <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 text-blue-400" size={20} />
+                        <Mail className="absolute left-2 top-1/2 transform -translate-y-1/2 text-blue-400" size={16} />
                         <input
                           type="email"
                           value={shippingAddress.email}
                           onChange={(e) => handleInputChange('email', e.target.value)}
-                          className={`w-full pl-11 pr-4 py-3 border-2 rounded-xl focus:ring-2 focus:ring-blue-500 transition-all ${
+                          className={`w-full pl-8 pr-2.5 py-2 text-sm border-2 rounded-lg focus:ring-2 focus:ring-blue-500 transition-all ${
                             errors.email ? 'border-red-500' : 'border-blue-200 focus:border-blue-500'
                           }`}
                           placeholder="john@example.com"
                         />
                       </div>
                       {errors.email && (
-                        <p className="text-red-500 text-sm mt-1 font-semibold">{errors.email}</p>
+                        <p className="text-red-500 text-xs mt-1 font-semibold">{errors.email}</p>
                       )}
                     </div>
 
                     <div>
-                      <label className="block text-sm font-semibold text-gray-700 mb-2">
+                      <label className="block text-xs font-semibold text-gray-700 mb-1">
                         Phone Number *
                       </label>
                       <div className="relative">
-                        <Phone className="absolute left-3 top-1/2 transform -translate-y-1/2 text-blue-400" size={20} />
+                        <Phone className="absolute left-2 top-1/2 transform -translate-y-1/2 text-blue-400" size={16} />
                         <input
                           type="tel"
                           value={shippingAddress.phone}
                           onChange={(e) => handleInputChange('phone', e.target.value)}
-                          className={`w-full pl-11 pr-4 py-3 border-2 rounded-xl focus:ring-2 focus:ring-blue-500 transition-all ${
+                          className={`w-full pl-8 pr-2.5 py-2 text-sm border-2 rounded-lg focus:ring-2 focus:ring-blue-500 transition-all ${
                             errors.phone ? 'border-red-500' : 'border-blue-200 focus:border-blue-500'
                           }`}
                           placeholder="9876543210"
@@ -403,7 +402,7 @@ const CartPage = () => {
                         />
                       </div>
                       {errors.phone && (
-                        <p className="text-red-500 text-sm mt-1 font-semibold">{errors.phone}</p>
+                        <p className="text-red-500 text-xs mt-1 font-semibold">{errors.phone}</p>
                       )}
                     </div>
                   </div>
@@ -411,82 +410,82 @@ const CartPage = () => {
 
                 {/* Shipping Address */}
                 <div>
-                  <h2 className="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
-                    <MapPin className="text-blue-600" size={24} />
+                  <h2 className="text-base font-bold text-gray-900 mb-2.5 flex items-center gap-2">
+                    <MapPin className="text-blue-600" size={18} />
                     Shipping Address
                   </h2>
-                  <div className="space-y-4">
+                  <div className="space-y-3">
                     <div>
-                      <label className="block text-sm font-semibold text-gray-700 mb-2">
+                      <label className="block text-xs font-semibold text-gray-700 mb-1">
                         Address *
                       </label>
                       <textarea
                         value={shippingAddress.address}
                         onChange={(e) => handleInputChange('address', e.target.value)}
-                        className={`w-full px-4 py-3 border-2 rounded-xl focus:ring-2 focus:ring-blue-500 transition-all ${
+                        className={`w-full px-2.5 py-2 text-sm border-2 rounded-lg focus:ring-2 focus:ring-blue-500 transition-all ${
                           errors.address ? 'border-red-500' : 'border-blue-200 focus:border-blue-500'
                         }`}
-                        rows={3}
+                        rows={2}
                         placeholder="House no., Street, Area"
                       />
                       {errors.address && (
-                        <p className="text-red-500 text-sm mt-1 font-semibold">{errors.address}</p>
+                        <p className="text-red-500 text-xs mt-1 font-semibold">{errors.address}</p>
                       )}
                     </div>
 
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
                       <div>
-                        <label className="block text-sm font-semibold text-gray-700 mb-2">
+                        <label className="block text-xs font-semibold text-gray-700 mb-1">
                           City *
                         </label>
                         <input
                           type="text"
                           value={shippingAddress.city}
                           onChange={(e) => handleInputChange('city', e.target.value)}
-                          className={`w-full px-4 py-3 border-2 rounded-xl focus:ring-2 focus:ring-blue-500 transition-all ${
+                          className={`w-full px-2.5 py-2 text-sm border-2 rounded-lg focus:ring-2 focus:ring-blue-500 transition-all ${
                             errors.city ? 'border-red-500' : 'border-blue-200 focus:border-blue-500'
                           }`}
                           placeholder="Mumbai"
                         />
                         {errors.city && (
-                          <p className="text-red-500 text-sm mt-1 font-semibold">{errors.city}</p>
+                          <p className="text-red-500 text-xs mt-1 font-semibold">{errors.city}</p>
                         )}
                       </div>
 
                       <div>
-                        <label className="block text-sm font-semibold text-gray-700 mb-2">
+                        <label className="block text-xs font-semibold text-gray-700 mb-1">
                           State *
                         </label>
                         <input
                           type="text"
                           value={shippingAddress.state}
                           onChange={(e) => handleInputChange('state', e.target.value)}
-                          className={`w-full px-4 py-3 border-2 rounded-xl focus:ring-2 focus:ring-blue-500 transition-all ${
+                          className={`w-full px-2.5 py-2 text-sm border-2 rounded-lg focus:ring-2 focus:ring-blue-500 transition-all ${
                             errors.state ? 'border-red-500' : 'border-blue-200 focus:border-blue-500'
                           }`}
                           placeholder="Maharashtra"
                         />
                         {errors.state && (
-                          <p className="text-red-500 text-sm mt-1 font-semibold">{errors.state}</p>
+                          <p className="text-red-500 text-xs mt-1 font-semibold">{errors.state}</p>
                         )}
                       </div>
 
                       <div>
-                        <label className="block text-sm font-semibold text-gray-700 mb-2">
+                        <label className="block text-xs font-semibold text-gray-700 mb-1">
                           Pincode *
                         </label>
                         <input
                           type="text"
                           value={shippingAddress.pincode}
                           onChange={(e) => handleInputChange('pincode', e.target.value)}
-                          className={`w-full px-4 py-3 border-2 rounded-xl focus:ring-2 focus:ring-blue-500 transition-all ${
+                          className={`w-full px-2.5 py-2 text-sm border-2 rounded-lg focus:ring-2 focus:ring-blue-500 transition-all ${
                             errors.pincode ? 'border-red-500' : 'border-blue-200 focus:border-blue-500'
                           }`}
                           placeholder="400001"
                           maxLength={6}
                         />
                         {errors.pincode && (
-                          <p className="text-red-500 text-sm mt-1 font-semibold">{errors.pincode}</p>
+                          <p className="text-red-500 text-xs mt-1 font-semibold">{errors.pincode}</p>
                         )}
                       </div>
                     </div>
@@ -495,12 +494,12 @@ const CartPage = () => {
 
                 {/* Payment Method */}
                 <div>
-                  <h2 className="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
-                    <CreditCard className="text-blue-600" size={24} />
+                  <h2 className="text-base font-bold text-gray-900 mb-2.5 flex items-center gap-2">
+                    <CreditCard className="text-blue-600" size={18} />
                     Payment Method
                   </h2>
-                  <div className="space-y-3">
-                    <label className={`flex items-center p-4 border-2 rounded-xl cursor-pointer transition-all ${
+                  <div className="space-y-2.5">
+                    <label className={`flex items-center p-3 border-2 rounded-lg cursor-pointer transition-all ${
                       paymentMethod === 'COD' 
                         ? 'border-blue-600 bg-blue-50' 
                         : 'border-blue-200 hover:border-blue-400 hover:bg-blue-50'
@@ -511,15 +510,15 @@ const CartPage = () => {
                         value="COD"
                         checked={paymentMethod === 'COD'}
                         onChange={(e) => setPaymentMethod(e.target.value as 'COD')}
-                        className="w-5 h-5 text-blue-600"
+                        className="w-4 h-4 text-blue-600"
                       />
-                      <div className="ml-3 flex items-center gap-2">
-                        <Truck size={24} className="text-blue-600" />
-                        <span className="font-bold text-gray-800">Cash on Delivery (COD)</span>
+                      <div className="ml-2.5 flex items-center gap-2">
+                        <Truck size={18} className="text-blue-600" />
+                        <span className="font-semibold text-sm text-gray-800">Cash on Delivery (COD)</span>
                       </div>
                     </label>
 
-                    <label className={`flex items-center p-4 border-2 rounded-xl cursor-pointer transition-all ${
+                    <label className={`flex items-center p-3 border-2 rounded-lg cursor-pointer transition-all ${
                       paymentMethod === 'Online' 
                         ? 'border-blue-600 bg-blue-50' 
                         : 'border-blue-200 hover:border-blue-400 hover:bg-blue-50'
@@ -530,11 +529,11 @@ const CartPage = () => {
                         value="Online"
                         checked={paymentMethod === 'Online'}
                         onChange={(e) => setPaymentMethod(e.target.value as 'Online')}
-                        className="w-5 h-5 text-blue-600"
+                        className="w-4 h-4 text-blue-600"
                       />
-                      <div className="ml-3 flex items-center gap-2">
-                        <CreditCard size={24} className="text-blue-600" />
-                        <span className="font-bold text-gray-800">Online Payment (Cards, UPI, Wallets)</span>
+                      <div className="ml-2.5 flex items-center gap-2">
+                        <CreditCard size={18} className="text-blue-600" />
+                        <span className="font-semibold text-sm text-gray-800">Online Payment (Cards, UPI, Wallets)</span>
                       </div>
                     </label>
                   </div>
@@ -543,14 +542,14 @@ const CartPage = () => {
                 <button
                   type="submit"
                   disabled={isProcessing}
-                  className="w-full bg-gradient-to-r from-blue-600 to-indigo-600 text-white py-4 rounded-xl font-bold text-lg hover:from-blue-700 hover:to-indigo-700 transition-all transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed shadow-lg"
+                  className="w-full bg-gradient-to-r from-blue-600 to-indigo-600 text-white py-3 rounded-lg font-bold text-sm hover:from-blue-700 hover:to-indigo-700 transition-all transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed shadow-md"
                 >
                   {isProcessing ? 'Processing...' : paymentMethod === 'COD' ? 'Place Order' : 'Proceed to Payment'}
                 </button>
               </form>
             </div>
 
-            {/* Order Summary Sidebar */}
+            {/* Order Summary Sidebar - Increased Width */}
             <div className="lg:col-span-1">
               <div className="bg-white rounded-2xl shadow-xl p-6 pt-8 border border-blue-200 sticky top-28">
                 <h2 className="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">

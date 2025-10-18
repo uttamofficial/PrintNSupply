@@ -29,20 +29,20 @@ export function Services() {
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <motion.div
-          className="text-center mb-12 md:mb-20"
+          className="text-center mb-10 md:mb-16"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <div className="inline-flex items-center gap-2 px-3 py-1.5 md:px-4 md:py-2 bg-blue-50 rounded-full border border-blue-200 mb-4 md:mb-6">
+          <div className="inline-flex items-center gap-2 px-3 py-1.5 md:px-4 md:py-2 bg-blue-50 rounded-full border border-blue-200 mb-3 md:mb-5">
             <Zap className="w-3 md:w-4 h-3 md:h-4 text-blue-600" />
             <span className="text-xs md:text-sm font-semibold text-blue-900">Our Services</span>
           </div>
-          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-black text-transparent bg-clip-text bg-gradient-to-r from-blue-900 via-blue-700 to-indigo-900 mb-3 md:mb-6">
+          <h2 className="text-2xl md:text-4xl lg:text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-blue-900 via-blue-700 to-indigo-900 mb-3 md:mb-5 leading-tight pb-3">
             Everything You Need
           </h2>
-          <p className="text-sm md:text-lg text-gray-600 max-w-2xl mx-auto">
+          <p className="text-sm md:text-base text-gray-600 max-w-2xl mx-auto leading-relaxed">
             Professional printing and premium stationery products designed for students
           </p>
         </motion.div>
@@ -59,22 +59,23 @@ export function Services() {
               transition={{ duration: 0.5, delay: index * 0.2 }}
             >
               {/* Card */}
-              <div className="relative h-full p-6 md:p-10 bg-gradient-to-br from-white to-blue-50/50 rounded-2xl md:rounded-3xl border border-blue-200 hover:border-blue-300 hover:shadow-xl transition-all duration-500 overflow-hidden">
+                            {/* Card */}
+              <div className="relative h-full p-5 md:p-8 bg-gradient-to-br from-white to-blue-50/50 rounded-xl md:rounded-2xl border border-blue-200 hover:border-blue-300 hover:shadow-xl transition-all duration-500 overflow-hidden">
                 {/* Hover Gradient Overlay */}
                 <div className={`absolute inset-0 bg-gradient-to-br ${service.gradient} opacity-0 group-hover:opacity-5 transition-opacity duration-500`}></div>
 
                 {/* Icon with gradient background */}
-                <div className="relative inline-flex items-center justify-center w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 lg:w-20 lg:h-20 rounded-xl md:rounded-2xl bg-gradient-to-br from-white to-blue-50 border-2 border-blue-200 mb-4 md:mb-6 transform group-hover:scale-110 group-hover:rotate-6 transition-all duration-500 shadow-md">
-                  <div className="text-blue-600 [&>svg]:w-6 [&>svg]:h-6 sm:[&>svg]:w-8 sm:[&>svg]:h-8 md:[&>svg]:w-10 md:[&>svg]:h-10 lg:[&>svg]:w-12 lg:[&>svg]:h-12">
+                <div className="relative inline-flex items-center justify-center w-12 h-12 md:w-16 md:h-16 rounded-xl bg-gradient-to-br from-white to-blue-50 border-2 border-blue-200 mb-3 md:mb-5 transform group-hover:scale-110 group-hover:rotate-6 transition-all duration-500 shadow-md">
+                  <div className="text-blue-600 [&>svg]:w-6 [&>svg]:h-6 md:[&>svg]:w-10 md:[&>svg]:h-10">
                     {service.icon}
                   </div>
                 </div>
 
                 {/* Content */}
-                <h3 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-black text-gray-900 mb-2 md:mb-4 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-blue-700 group-hover:to-indigo-700 transition-all duration-300">
+                <h3 className="text-lg md:text-2xl font-black text-gray-900 mb-2 md:mb-3 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-blue-700 group-hover:to-indigo-700 transition-all duration-300 leading-tight pb-1">
                   {service.title}
                 </h3>
-                <p className="text-sm sm:text-base md:text-lg text-gray-600 mb-4 md:mb-8 leading-relaxed">
+                <p className="text-sm md:text-base text-gray-600 mb-3 md:mb-6 leading-relaxed">
                   {service.description}
                 </p>
 

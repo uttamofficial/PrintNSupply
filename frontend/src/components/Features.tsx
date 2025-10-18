@@ -36,25 +36,23 @@ export function Features() {
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <motion.div
-          className="text-center mb-12 md:mb-20"
+          className="text-center mb-10 md:mb-16"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <div className="inline-flex items-center gap-2 px-3 py-1.5 md:px-4 md:py-2 bg-white rounded-full border border-blue-200 mb-4 md:mb-6 shadow-sm">
+          <div className="inline-flex items-center gap-2 px-3 py-1.5 md:px-4 md:py-2 bg-white rounded-full border border-blue-200 mb-3 md:mb-5 shadow-sm">
             <Star className="w-3 md:w-4 h-3 md:h-4 text-blue-600" />
             <span className="text-xs md:text-sm font-semibold text-blue-900">Why Choose Us</span>
           </div>
-          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-black text-transparent bg-clip-text bg-gradient-to-r from-blue-900 via-blue-700 to-indigo-900 mb-3 md:mb-6">
+          <h2 className="text-2xl md:text-4xl lg:text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-blue-900 via-blue-700 to-indigo-900 mb-3 md:mb-5 leading-tight pb-1">
             Exceptional Features
           </h2>
-          <p className="text-sm md:text-lg text-gray-600 max-w-2xl mx-auto">
+          <p className="text-sm md:text-base text-gray-600 max-w-2xl mx-auto leading-relaxed">
             Experience the difference with our premium printing services designed for modern students
           </p>
-        </motion.div>
-
-        {/* Features Grid */}
+        </motion.div>        {/* Features Grid */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-8">
           {features.map((feature, index) => (
             <motion.div
