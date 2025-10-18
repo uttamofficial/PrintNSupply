@@ -132,22 +132,6 @@ npm run build
 
 ---
 
-## 🖼️ Screenshots
-
-**Home Page**  
-![Home Page](./image/homepage.png)
-
-**Shopping Cart**  
-![Cart](./image/cart.png)
-
-**Admin Dashboard**  
-![Admin Panel](./image/admin.png)
-
-**PDF Upload Flow**  
-![Upload PDF](./image/upload.png)
-
----
-
 ## 🧩 Repository Cleanup (Optional)
 
 We have multiple `.md` files for past notes, guides, and fixes. Options:
@@ -167,6 +151,4 @@ We have multiple `.md` files for past notes, guides, and fixes. Options:
 ## 🔗 Live Demo & Repository
 
 - **GitHub:** [https://github.com/uttamofficial/PrintNSupply](https://github.com/uttamofficial/PrintNSupply)  
-- **Live Deployment:** *(Add live link if deployed)*  
-```
-
+- **Live Deployment:** [https://printnsupply.onrender.com](https://printnsupply.onrender.com)
