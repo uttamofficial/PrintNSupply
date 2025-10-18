@@ -1,7 +1,5 @@
 # 🖨️ PrintNSupply
 
-![PrintNSupply Banner](./image/banner.png)
-
 **PrintNSupply** is a modern, student-focused printing and stationery web application that enables fast PDF uploads, print orders, and stationery purchases with a seamless, responsive experience.
 
 Built with **React + Vite frontend** and **Node.js/Express backend**, this project demonstrates a full-stack solution for on-demand document services with cloud uploads, secure authentication, and online payments.
@@ -132,21 +130,6 @@ npm run build
 - Use dynamic import() to reduce Vite bundle sizes.
 - Verify Clerk keys to avoid frontend runtime errors.
 
----
-
-## 🖼️ Screenshots
-
-**Home Page**  
-![Home Page](./image/homepage.png)
-
-**Shopping Cart**  
-![Cart](./image/cart.png)
-
-**Admin Dashboard**  
-![Admin Panel](./image/admin.png)
-
-**PDF Upload Flow**  
-![Upload PDF](./image/upload.png)
 
 ---
 
@@ -176,5 +159,5 @@ Add your preferred license (MIT / Apache 2.0 / Proprietary)
 
 - **GitHub:** [https://github.com/uttamofficial/PrintNSupply](https://github.com/uttamofficial/PrintNSupply)  
 - **Live Deployment:** *(Add live link if deployed)*  
-```
+
 
