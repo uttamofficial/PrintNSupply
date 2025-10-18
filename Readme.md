@@ -154,5 +154,4 @@ We have multiple `.md` files for past notes, guides, and fixes. Options:
 
 - **GitHub:** [https://github.com/uttamofficial/PrintNSupply](https://github.com/uttamofficial/PrintNSupply)  
 - **Live Deployment:** [https://printnsupply.onrender.com]  
-```
 
